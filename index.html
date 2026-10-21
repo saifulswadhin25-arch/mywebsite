@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +36,6 @@ html
       font-family: 'Inter', sans-serif;
       background-color: #fbfcfd;
     }
-    /* Smooth transitions and scrollbars */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
@@ -65,9 +63,8 @@ html
           </div>
         </div>
 
-        <!-- Academic Selector & Navigation -->
+        <!-- Academic Semester Switcher -->
         <div class="flex items-center space-x-3">
-          <!-- Semester Switcher Dropdown -->
           <div class="relative flex items-center">
             <span class="text-xs font-semibold text-slate-500 mr-2 hidden md:inline">Academic Term:</span>
             <select id="semesterSelector" class="bg-white border border-slate-300 hover:border-slate-400 font-medium text-xs sm:text-sm rounded-lg py-1.5 px-3 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 cursor-pointer shadow-sm transition">
@@ -96,7 +93,7 @@ html
         </button>
         <button onclick="switchTab('analytics')" id="tab-analytics" class="tab-btn py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center space-x-2 whitespace-nowrap">
           <i data-lucide="calculator" class="w-4 h-4"></i>
-          <span>Results & CGPA Analytics</span>
+          <span>Results & A+ Target Calculator</span>
         </button>
         <button onclick="switchTab('routine')" id="tab-routine" class="tab-btn py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center space-x-2 whitespace-nowrap">
           <i data-lucide="calendar" class="w-4 h-4"></i>
@@ -113,16 +110,16 @@ html
     <!-- TAB 1: DASHBOARD & STUDY TRACKER               -->
     <!-- ============================================== -->
     <section id="view-dashboard" class="space-y-6">
-      <!-- Semester Summary Banner -->
       <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="flex items-center space-x-2">
             <h1 class="text-2xl font-bold text-slate-900" id="dashSemTitle">2nd Year, 1st Semester</h1>
             <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200" id="dashTotalCredits">19.0 Credits</span>
           </div>
-          <p class="text-sm text-slate-500 mt-1">B.Sc. in Civil and Environmental Engineering &bull; "Build the Earth, Save the Earth"</p>
+          <p class="text-sm text-slate-500 mt-1">B.Sc. in Civil and Environmental Engineering &bull; SUST Syllabus Framework</p>
         </div>
-        <!-- Study Progress Pill -->
+        
+        <!-- Daily Goal Radial Progress -->
         <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex items-center space-x-4 min-w-[240px]">
           <div class="relative w-12 h-12 flex items-center justify-center">
             <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
@@ -138,10 +135,8 @@ html
         </div>
       </div>
 
-      <!-- Grid: Enrolled Courses & Study Goals -->
+      <!-- Dashboard Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        <!-- Left 2 Cols: Enrolled Courses Cards -->
         <div class="lg:col-span-2 space-y-4">
           <div class="flex items-center justify-between">
             <h2 class="text-base font-semibold text-slate-900 flex items-center space-x-2">
@@ -149,16 +144,13 @@ html
               <span>Enrolled Courses (<span id="dashCourseCount">9</span>)</span>
             </h2>
             <button onclick="switchTab('syllabus')" class="text-xs text-blue-600 font-medium hover:underline flex items-center">
-              View Syllabi <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
+              Go to Syllabi & Materials <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
             </button>
           </div>
-
-          <div id="dashCoursesContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <!-- Dynamic course cards loaded via JS -->
-          </div>
+          <div id="dashCoursesContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
         </div>
 
-        <!-- Right Col: Daily Study Goals -->
+        <!-- Today's Study Goals -->
         <div class="space-y-4">
           <div class="flex items-center justify-between">
             <h2 class="text-base font-semibold text-slate-900 flex items-center space-x-2">
@@ -167,16 +159,12 @@ html
             </h2>
             <button onclick="openNewTaskModal()" class="text-xs bg-slate-900 text-white px-2.5 py-1.5 rounded-lg hover:bg-slate-800 flex items-center space-x-1 shadow-sm">
               <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-              <span>Add Task</span>
+              <span>Add Goal</span>
             </button>
           </div>
 
-          <!-- Goal List Card -->
           <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm min-h-[360px] flex flex-col justify-between">
-            <div id="goalList" class="space-y-2.5 overflow-y-auto max-h-[380px] pr-1">
-              <!-- Rendered via JS -->
-            </div>
-            
+            <div id="goalList" class="space-y-2.5 overflow-y-auto max-h-[380px] pr-1"></div>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
               <span id="goalCountStatus">0 tasks scheduled</span>
               <button onclick="clearCompletedGoals()" class="hover:text-red-600 transition">Clear Finished</button>
@@ -193,7 +181,7 @@ html
       <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
         <div>
           <h1 class="text-2xl font-bold text-slate-900">Syllabus & Materials Hub</h1>
-          <p class="text-xs sm:text-sm text-slate-500">Official course rationales, topics, CO-PO alignments, and client-side PDF document repository.</p>
+          <p class="text-xs sm:text-sm text-slate-500">Major CEE courses feature partitioned Part A & Part B document vaults and dedicated textbook references.</p>
         </div>
         <div class="flex items-center space-x-2">
           <div class="relative">
@@ -203,94 +191,82 @@ html
         </div>
       </div>
 
-      <!-- Accordion of Courses for current semester -->
-      <div id="syllabusAccordion" class="space-y-3">
-        <!-- Rendered via JS -->
-      </div>
+      <!-- Courses Accordion -->
+      <div id="syllabusAccordion" class="space-y-3.5"></div>
     </section>
 
     <!-- ============================================== -->
-    <!-- TAB 3: RESULTS & CGPA ANALYTICS ENGINE        -->
+    <!-- TAB 3: RESULTS & A+ TARGET ANALYTICS           -->
     <!-- ============================================== -->
     <section id="view-analytics" class="hidden space-y-6">
-      <!-- Overview Banner -->
       <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
           <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Projected SGPA</span>
-            <div class="text-3xl font-extrabold text-slate-900 mt-1" id="projectedGpa">0.00</div>
-            <p class="text-xs text-slate-500 mt-0.5" id="gpaStatusNote">Based on entered semester marks</p>
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Continuous Assessment</span>
+            <div class="text-3xl font-extrabold text-slate-900 mt-1" id="projectedContinuousAvg">--</div>
+            <p class="text-xs text-slate-500 mt-0.5">Average across 40 continuous marks</p>
           </div>
           <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Total Credits</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Total Enrolled Credits</span>
             <div class="text-3xl font-extrabold text-blue-600 mt-1" id="calcTotalCredits">0.0</div>
-            <p class="text-xs text-slate-500 mt-0.5">Calculated weighting</p>
+            <p class="text-xs text-slate-500 mt-0.5">Current term credit total</p>
           </div>
           <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">SUST Grade Standard</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Target Standard</span>
             <div class="text-sm font-semibold text-slate-800 mt-1 flex items-center space-x-2">
-              <span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-mono font-bold text-xs" id="projectedLetter">--</span>
-              <span class="text-xs text-slate-500">Graduation Min: 2.00</span>
+              <span class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-mono font-bold text-xs">A+ (&ge; 80%)</span>
+              <span class="text-xs text-slate-500">Grade Point: 4.00</span>
             </div>
-            <p class="text-[11px] text-slate-400 mt-1">&ge;80% A+ (4.00) &bull; &ge;40% C- (2.00)</p>
+            <p class="text-[11px] text-slate-400 mt-1">Calculates Semester Final mark required out of 60</p>
           </div>
           <div class="flex justify-start md:justify-end">
             <button onclick="resetAllMarks()" class="text-xs border border-slate-300 hover:bg-slate-100 text-slate-700 px-3.5 py-2 rounded-lg font-medium transition flex items-center space-x-1.5 shadow-sm">
               <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
-              <span>Reset Marks</span>
+              <span>Clear Marks</span>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Marks Input Breakdown -->
       <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        
-        <!-- Left 2 Cols: Form Input Cards for current semester courses -->
+        <!-- Mark Entry Sheet -->
         <div class="xl:col-span-2 space-y-4">
           <div class="flex items-center justify-between">
             <h2 class="text-base font-semibold text-slate-900 flex items-center space-x-2">
-              <i data-lucide="edit-3" class="w-4 h-4 text-slate-500"></i>
-              <span>Mark Entry Sheet</span>
+              <i data-lucide="calculator" class="w-4 h-4 text-slate-500"></i>
+              <span>Continuous Assessment & A+ Final Target Calculator</span>
             </h2>
-            <span class="text-xs text-slate-500">Changes save automatically to LocalStorage</span>
+            <span class="text-xs text-slate-500">No Final exam input needed &bull; Auto-calculated</span>
           </div>
 
-          <div id="markEntryContainer" class="space-y-3.5">
-            <!-- Dynamic Marks Entry Cards Rendered here -->
-          </div>
+          <div id="markEntryContainer" class="space-y-3.5"></div>
         </div>
 
-        <!-- Right Col: Visual Grade Distribution & SUST Rules -->
+        <!-- Grade Scale & Targets Overview -->
         <div class="space-y-6">
-          <!-- Chart Card -->
           <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
             <h3 class="text-sm font-semibold text-slate-900 mb-4 flex items-center space-x-2">
               <i data-lucide="pie-chart" class="w-4 h-4 text-slate-500"></i>
-              <span>Grade Distribution</span>
+              <span>A+ Feasibility Distribution</span>
             </h3>
             <div class="h-56 relative flex items-center justify-center">
               <canvas id="gradeChart"></canvas>
             </div>
           </div>
 
-          <!-- Official SUST Grading Scale Reference -->
           <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-3">
             <h3 class="text-sm font-semibold text-slate-900 flex items-center space-x-2">
               <i data-lucide="info" class="w-4 h-4 text-slate-500"></i>
-              <span>SUST Grading Scale (CEE Part D)</span>
+              <span>A+ Benchmark Logic</span>
             </h3>
-            <div class="text-xs font-mono grid grid-cols-3 gap-1.5 text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100">
-              <div>80%+: <b class="text-slate-900">A+ (4.00)</b></div>
-              <div>75-79%: <b class="text-slate-900">A (3.75)</b></div>
-              <div>70-74%: <b class="text-slate-900">A- (3.50)</b></div>
-              <div>65-69%: <b class="text-slate-900">B+ (3.25)</b></div>
-              <div>60-64%: <b class="text-slate-900">B (3.00)</b></div>
-              <div>55-59%: <b class="text-slate-900">B- (2.75)</b></div>
-              <div>50-54%: <b class="text-slate-900">C+ (2.50)</b></div>
-              <div>45-49%: <b class="text-slate-900">C (2.25)</b></div>
-              <div>40-44%: <b class="text-slate-900">C- (2.00)</b></div>
-              <div class="col-span-3 text-red-600">&lt;40%: <b>F (0.00) - Repeat course</b></div>
+            <div class="text-xs space-y-2 text-slate-600 bg-slate-50 p-3.5 rounded-lg border border-slate-100">
+              <p><b>Theory Breakdown:</b> Total 100 = Continuous Assessment (40) + Semester Final (60).</p>
+              <ul class="list-disc pl-4 space-y-1">
+                <li>Continuous: Attendance (10) + Assignment/TT (10) + Midterm (20).</li>
+                <li>To obtain <b>A+ (80%)</b>, your cumulative score must reach at least <b>80.0</b>.</li>
+                <li>Required Final Mark formula: <span class="font-mono font-bold text-slate-800">Target = 80 - Continuous</span>.</li>
+                <li>If continuous is &lt; 20, obtaining A+ is mathematically impossible since Final is capped at 60.</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -304,7 +280,7 @@ html
       <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
         <div>
           <h1 class="text-2xl font-bold text-slate-900">Exam Schedule & Routine</h1>
-          <p class="text-xs sm:text-sm text-slate-500">Plan and track your midterms, sessional vivas, and semester-end finals.</p>
+          <p class="text-xs sm:text-sm text-slate-500">Track exams with course titles and dates at a glance.</p>
         </div>
         <button onclick="openExamModal()" class="text-xs bg-slate-900 text-white px-3 py-2 rounded-lg hover:bg-slate-800 flex items-center space-x-1.5 shadow-sm">
           <i data-lucide="plus-circle" class="w-4 h-4"></i>
@@ -312,28 +288,54 @@ html
         </button>
       </div>
 
-      <!-- Routine Table -->
       <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs sm:text-sm">
             <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold uppercase text-[11px] tracking-wider">
               <tr>
                 <th class="py-3 px-4">Exam Type</th>
-                <th class="py-3 px-4">Course</th>
+                <th class="py-3 px-4">Course Details (Code & Full Title)</th>
                 <th class="py-3 px-4">Date & Time</th>
                 <th class="py-3 px-4">Room / Hall</th>
                 <th class="py-3 px-4">Countdown</th>
                 <th class="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody id="examScheduleTable" class="divide-y divide-slate-100">
-              <!-- Rendered via JS -->
-            </tbody>
+            <tbody id="examScheduleTable" class="divide-y divide-slate-100"></tbody>
           </table>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ADD REFERENCE BOOK                      -->
+  <!-- ============================================== -->
+  <div id="refBookModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-100">
+        <h3 class="text-base font-bold text-slate-900">Add Reference Book</h3>
+        <button onclick="closeModal('refBookModal')" class="text-slate-400 hover:text-slate-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <form onsubmit="handleSaveRefBook(event)" class="mt-4 space-y-4">
+        <input type="hidden" id="refBookCourseCode">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Book Title & Author</label>
+          <input type="text" id="refBookTitleInput" required placeholder="e.g. Surveying Vol. 1 - Dr. B.C. Punmia" class="w-full text-xs sm:text-sm border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Optional Web/Drive Link</label>
+          <input type="url" id="refBookLinkInput" placeholder="https://..." class="w-full text-xs sm:text-sm border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
+        </div>
+        <div class="flex justify-end space-x-2 pt-2">
+          <button type="button" onclick="closeModal('refBookModal')" class="px-3.5 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
+          <button type="submit" class="px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm">Save Book</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- ============================================== -->
   <!-- MODAL: ADD / EDIT STUDY TASK                   -->
@@ -382,11 +384,11 @@ html
         <div>
           <label class="block text-xs font-semibold text-slate-600 mb-1">Exam Type</label>
           <select id="examTypeSelect" class="w-full text-xs sm:text-sm border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
-            <option value="Semester Final (SA 01)">Semester Final (SA 01)</option>
+            <option value="Semester Final Exam">Semester Final Exam</option>
             <option value="Midterm Exam 1 (CA 01)">Midterm Exam 1 (CA 01)</option>
             <option value="Midterm Exam 2 (CA 02)">Midterm Exam 2 (CA 02)</option>
-            <option value="Class Test / Quiz (CA 04)">Class Test / Quiz (CA 04)</option>
-            <option value="Sessional Final Quiz">Sessional Final Quiz</option>
+            <option value="Class Test / Sudden Quiz (CA 04)">Class Test / Sudden Quiz (CA 04)</option>
+            <option value="Sessional Final Quiz (SA 01)">Sessional Final Quiz (SA 01)</option>
             <option value="Year Final Viva (SA 02)">Year Final Viva (SA 02)</option>
           </select>
         </div>
@@ -405,7 +407,7 @@ html
           </div>
         </div>
         <div>
-          <label class="block text-xs font-semibold text-slate-600 mb-1">Room / Location</label>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Room / Hall</label>
           <input type="text" id="examRoomInput" placeholder="e.g., CEE Gallery 01 / CEE-302" class="w-full text-xs sm:text-sm border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
         </div>
         <div class="flex justify-end space-x-2 pt-2">
@@ -462,11 +464,11 @@ html
   </footer>
 
   <!-- ============================================== -->
-  <!-- JAVASCRIPT APP LOGIC & DATA                    -->
+  <!-- JAVASCRIPT LOGIC & ENGINE                      -->
   <!-- ============================================== -->
   <script>
     /* ----------------------------------------------------
-       1. AUTHENTIC CURRICULUM DATABASE (PARSED FROM PDF)
+       1. AUTHENTIC SUST CEE CURRICULUM DATABASE
        ---------------------------------------------------- */
     const CURRICULUM_DATA = {
       "1/1": {
@@ -607,11 +609,11 @@ html
     };
 
     /* ----------------------------------------------------
-       2. INDEXEDDB SETUP FOR CLIENT-SIDE PDF STORAGE
+       2. PERSISTENT INDEXEDDB CLIENT-SIDE STORAGE
        ---------------------------------------------------- */
     let db;
-    const DB_NAME = "SwadhinDeskDB";
-    const DB_VERSION = 1;
+    const DB_NAME = "SwadhinDeskMaterialsDB";
+    const DB_VERSION = 2;
 
     function initIndexedDB() {
       return new Promise((resolve, reject) => {
@@ -621,6 +623,7 @@ html
           if (!database.objectStoreNames.contains("materials")) {
             const store = database.createObjectStore("materials", { keyPath: "id", autoIncrement: true });
             store.createIndex("courseCode", "courseCode", { unique: false });
+            store.createIndex("part", "part", { unique: false });
           }
         };
         request.onsuccess = (e) => {
@@ -631,7 +634,7 @@ html
       });
     }
 
-    async function saveFileToDB(courseCode, file) {
+    async function saveFileToDB(courseCode, part, file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => {
@@ -639,6 +642,7 @@ html
           const store = tx.objectStore("materials");
           const record = {
             courseCode: courseCode,
+            part: part,
             name: file.name,
             size: file.size,
             type: file.type,
@@ -653,28 +657,51 @@ html
       });
     }
 
-    async function getFilesForCourse(courseCode) {
+    async function getFilesForCoursePart(courseCode, part) {
       return new Promise((resolve) => {
         if (!db) return resolve([]);
         const tx = db.transaction("materials", "readonly");
         const store = tx.objectStore("materials");
         const index = store.index("courseCode");
         const req = index.getAll(courseCode);
-        req.onsuccess = () => resolve(req.result || []);
+        req.onsuccess = () => {
+          const res = req.result || [];
+          resolve(res.filter(item => item.part === part));
+        };
         req.onerror = () => resolve([]);
       });
     }
 
-    async function deleteFileFromDB(id, courseCode) {
+    async function deleteFileFromDB(id, courseCode, part) {
       return new Promise((resolve) => {
         const tx = db.transaction("materials", "readwrite");
         const store = tx.objectStore("materials");
         const req = store.delete(id);
         req.onsuccess = async () => {
-          await renderMaterialsForCourse(courseCode);
+          await renderPartMaterials(courseCode, part);
           resolve();
         };
       });
+    }
+
+    function viewPdfOnline(dataUrl) {
+      try {
+        const arr = dataUrl.split(',');
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+        const blob = new Blob([u8arr], { type: mime });
+        const blobUrl = URL.createObjectURL(blob);
+        window.open(blobUrl, '_blank');
+      } catch (e) {
+        alert("Unable to open PDF preview. Falling back to direct URL.");
+        const win = window.open();
+        win.document.write('<iframe src="' + dataUrl + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+      }
     }
 
     /* ----------------------------------------------------
@@ -682,7 +709,7 @@ html
        ---------------------------------------------------- */
     let currentSemester = localStorage.getItem("swadhin_current_sem") || "2/1";
     let studyTasks = JSON.parse(localStorage.getItem("swadhin_tasks")) || [
-      { id: 1, courseCode: "CEE 0731 2123", desc: "Solve 3 traverse latitude & departure closing error problems", date: "2026-10-22", done: false },
+      { id: 1, courseCode: "CEE 0731 2123", desc: "Solve traverse latitude & departure closing error problems", date: "2026-10-22", done: false },
       { id: 2, courseCode: "CEE 0732 2131", desc: "Review bending stress formula for T-beams and cantilever spans", date: "2026-10-22", done: true },
       { id: 3, courseCode: "CSE 0613 2106C", desc: "Complete Python NumPy matrix assignment for structural nodes", date: "2026-10-23", done: false }
     ];
@@ -692,6 +719,7 @@ html
       { id: 3, sem: "2/1", type: "Class Test / Quiz (CA 04)", courseCode: "CEE 0732 2135", date: "2026-11-15", time: "09:00", room: "Fluid Lab" }
     ];
     let marksData = JSON.parse(localStorage.getItem("swadhin_marks")) || {};
+    let customRefBooks = JSON.parse(localStorage.getItem("swadhin_ref_books")) || {};
     let gradeChartInstance = null;
 
     /* ----------------------------------------------------
@@ -734,7 +762,6 @@ html
     function refreshAllViews() {
       const data = CURRICULUM_DATA[currentSemester] || CURRICULUM_DATA["2/1"];
       
-      // Update Dashboard Banner
       document.getElementById("dashSemTitle").textContent = data.name;
       document.getElementById("dashTotalCredits").textContent = `${data.credits.toFixed(1)} Credits`;
       document.getElementById("dashCourseCount").textContent = data.courses.length;
@@ -744,8 +771,16 @@ html
       renderSyllabusList(data.courses);
       renderMarkEntry(data.courses);
       renderExamRoutine();
-      calculateOverallCGPA();
+      calculateContinuousOverview();
       lucide.createIcons();
+    }
+
+    function getCourseByCode(code) {
+      for (const sem in CURRICULUM_DATA) {
+        const found = CURRICULUM_DATA[sem].courses.find(c => c.code === code);
+        if (found) return found;
+      }
+      return null;
     }
 
     /* ----------------------------------------------------
@@ -772,8 +807,8 @@ html
             <button onclick="viewSyllabusModal('${c.code}')" class="text-xs text-blue-600 font-medium hover:underline flex items-center">
               View Syllabus <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 ml-0.5"></i>
             </button>
-            <span class="text-[11px] text-slate-400 font-mono" id="badge-${c.code.replace(/\s+/g,'')}">
-              ${marksData[c.code]?.grade ? `Grade: <b>${marksData[c.code].grade}</b>` : 'Not graded'}
+            <span class="text-[11px] font-mono text-slate-500" id="badge-${c.code.replace(/\s+/g,'')}">
+              ${marksData[c.code]?.continuous !== undefined ? `Continuous: <b>${marksData[c.code].continuous}/40</b>` : 'In progress'}
             </span>
           </div>
         `;
@@ -816,7 +851,6 @@ html
         });
       }
 
-      // Update metrics
       const total = filtered.length;
       const completed = filtered.filter(t => t.done).length;
       const pct = total === 0 ? 0 : Math.round((completed / total) * 100);
@@ -880,65 +914,153 @@ html
     }
 
     /* ----------------------------------------------------
-       6. SYLLABUS & MATERIALS HUB
+       6. SYLLABUS & MATERIALS HUB (WITH PART A / PART B)
        ---------------------------------------------------- */
     function renderSyllabusList(courses) {
       const accordion = document.getElementById("syllabusAccordion");
       accordion.innerHTML = "";
 
-      courses.forEach((c, idx) => {
+      courses.forEach((c) => {
+        const cleanCode = c.code.replace(/\s+/g,'');
+        const isMajorCEE = c.code.trim().startsWith("CEE");
         const item = document.createElement("div");
         item.className = "bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm transition";
-        item.id = `accordion-${c.code.replace(/\s+/g,'')}`;
+        item.id = `accordion-${cleanCode}`;
         
+        let materialsHtml = "";
+        if (isMajorCEE) {
+          // Major CEE course: split into Part A and Part B
+          materialsHtml = `
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Part A Vault -->
+              <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                    <div class="flex items-center space-x-2">
+                      <span class="w-6 h-6 rounded-md bg-blue-50 text-blue-700 font-bold text-xs flex items-center justify-center border border-blue-200">A</span>
+                      <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wide">Part A Lecture Materials</h5>
+                    </div>
+                  </div>
+                  <!-- Upload Input -->
+                  <div class="mb-3">
+                    <label class="flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-lg p-3 hover:bg-slate-50 hover:border-blue-400 cursor-pointer transition">
+                      <i data-lucide="upload-cloud" class="w-5 h-5 text-slate-400 mb-1"></i>
+                      <span class="text-[11px] font-medium text-slate-600">Upload Part A PDF</span>
+                      <span class="text-[9px] text-slate-400">Persistent IndexedDB Storage</span>
+                      <input type="file" accept="application/pdf" class="hidden" onchange="handlePartFileUpload(event, '${c.code}', 'Part A')">
+                    </label>
+                  </div>
+                  <!-- Files List -->
+                  <div id="materials-${cleanCode}-PartA" class="space-y-1.5">
+                    <div class="text-[11px] text-slate-400">Loading Part A documents...</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Part B Vault -->
+              <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                    <div class="flex items-center space-x-2">
+                      <span class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 font-bold text-xs flex items-center justify-center border border-indigo-200">B</span>
+                      <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wide">Part B Lecture Materials</h5>
+                    </div>
+                  </div>
+                  <!-- Upload Input -->
+                  <div class="mb-3">
+                    <label class="flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-lg p-3 hover:bg-slate-50 hover:border-indigo-400 cursor-pointer transition">
+                      <i data-lucide="upload-cloud" class="w-5 h-5 text-slate-400 mb-1"></i>
+                      <span class="text-[11px] font-medium text-slate-600">Upload Part B PDF</span>
+                      <span class="text-[9px] text-slate-400">Persistent IndexedDB Storage</span>
+                      <input type="file" accept="application/pdf" class="hidden" onchange="handlePartFileUpload(event, '${c.code}', 'Part B')">
+                    </label>
+                  </div>
+                  <!-- Files List -->
+                  <div id="materials-${cleanCode}-PartB" class="space-y-1.5">
+                    <div class="text-[11px] text-slate-400">Loading Part B documents...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          // Non-CEE Allied Course
+          materialsHtml = `
+            <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+              <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                <div class="flex items-center space-x-2">
+                  <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center">M</span>
+                  <h5 class="text-xs font-bold text-slate-800 uppercase tracking-wide">Lecture Notes & Documents</h5>
+                </div>
+                <label class="cursor-pointer text-xs bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 px-2.5 py-1 rounded-lg font-medium transition flex items-center space-x-1">
+                  <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                  <span>Upload PDF</span>
+                  <input type="file" accept="application/pdf" class="hidden" onchange="handlePartFileUpload(event, '${c.code}', 'General')">
+                </label>
+              </div>
+              <div id="materials-${cleanCode}-General" class="space-y-1.5">
+                <div class="text-[11px] text-slate-400">Loading documents...</div>
+              </div>
+            </div>
+          `;
+        }
+
         item.innerHTML = `
-          <!-- Header -->
-          <div class="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-50 transition" onclick="toggleAccordion('content-${c.code.replace(/\s+/g,'')}', 'arrow-${c.code.replace(/\s+/g,'')}')">
+          <!-- Accordion Header -->
+          <div class="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-50 transition" onclick="toggleAccordion('content-${cleanCode}', 'arrow-${cleanCode}')">
             <div class="flex items-center space-x-3">
-              <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-800">${c.code}</span>
+              <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded ${isMajorCEE ? 'bg-blue-50 text-blue-800 border border-blue-200' : 'bg-slate-100 text-slate-700'}">${c.code}</span>
               <div>
                 <h3 class="text-sm font-semibold text-slate-900">${c.title}</h3>
                 <span class="text-xs text-slate-500">${c.credit.toFixed(1)} Credits &bull; <span class="capitalize">${c.type}</span></span>
               </div>
             </div>
             <div class="flex items-center space-x-3">
-              <button onclick="event.stopPropagation(); viewSyllabusModal('${c.code}')" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md font-medium">Details</button>
-              <i data-lucide="chevron-down" id="arrow-${c.code.replace(/\s+/g,'')}" class="w-4 h-4 text-slate-400 transition-transform duration-200"></i>
+              <button onclick="event.stopPropagation(); viewSyllabusModal('${c.code}')" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md font-medium">Syllabus</button>
+              <i data-lucide="chevron-down" id="arrow-${cleanCode}" class="w-4 h-4 text-slate-400 transition-transform duration-200"></i>
             </div>
           </div>
 
-          <!-- Collapsible Body -->
-          <div id="content-${c.code.replace(/\s+/g,'')}" class="hidden border-t border-slate-100 p-5 bg-slate-50/50 space-y-4">
-            
-            <!-- Quick Summary -->
+          <!-- Accordion Content -->
+          <div id="content-${cleanCode}" class="hidden border-t border-slate-100 p-5 bg-slate-50/50 space-y-5">
+            <!-- Rationale -->
             <div>
-              <h4 class="text-xs font-semibold uppercase text-slate-400 tracking-wider">Course Focus</h4>
-              <p class="text-xs text-slate-600 mt-1">${c.rationale}</p>
+              <h4 class="text-xs font-semibold uppercase text-slate-400 tracking-wider">Course Focus & Rationale</h4>
+              <p class="text-xs text-slate-600 mt-1 leading-relaxed">${c.rationale}</p>
             </div>
 
-            <!-- PDF Materials Uploader -->
-            <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold text-slate-800 flex items-center space-x-1.5">
-                  <i data-lucide="file-text" class="w-4 h-4 text-blue-600"></i>
-                  <span>Course Material Documents (PDF)</span>
-                </span>
-                <label class="cursor-pointer text-xs bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 px-2.5 py-1 rounded-lg font-medium transition flex items-center space-x-1">
-                  <i data-lucide="upload" class="w-3.5 h-3.5"></i>
-                  <span>Upload PDF</span>
-                  <input type="file" accept="application/pdf" class="hidden" onchange="handleFileUpload(event, '${c.code}')">
-                </label>
-              </div>
+            <!-- Upload Subsections -->
+            <div>
+              <h4 class="text-xs font-semibold uppercase text-slate-400 tracking-wider mb-2">Lecture Course Materials</h4>
+              ${materialsHtml}
+            </div>
 
-              <!-- Uploaded files list container -->
-              <div id="materials-${c.code.replace(/\s+/g,'')}" class="space-y-1.5 pt-1">
-                <div class="text-[11px] text-slate-400">Loading stored documents...</div>
+            <!-- Reference Books Section -->
+            <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+              <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+                <span class="text-xs font-bold text-slate-800 flex items-center space-x-1.5 uppercase tracking-wide">
+                  <i data-lucide="book-marked" class="w-4 h-4 text-emerald-600"></i>
+                  <span>Reference Books & Literature</span>
+                </span>
+                <button onclick="openRefBookModal('${c.code}')" class="text-[11px] bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 px-2 py-0.5 rounded font-medium flex items-center space-x-1">
+                  <i data-lucide="plus" class="w-3 h-3"></i>
+                  <span>Add Reference</span>
+                </button>
               </div>
+              <div id="refbooks-${cleanCode}" class="space-y-1.5"></div>
             </div>
           </div>
         `;
         accordion.appendChild(item);
-        renderMaterialsForCourse(c.code);
+        
+        // Render files & reference books
+        if (isMajorCEE) {
+          renderPartMaterials(c.code, "Part A");
+          renderPartMaterials(c.code, "Part B");
+        } else {
+          renderPartMaterials(c.code, "General");
+        }
+        renderRefBooksForCourse(c.code);
       });
       lucide.createIcons();
     }
@@ -954,39 +1076,44 @@ html
       const q = document.getElementById("courseSearchInput").value.toLowerCase();
       const currentCourses = CURRICULUM_DATA[currentSemester].courses;
       currentCourses.forEach(c => {
-        const el = document.getElementById(`accordion-${c.code.replace(/\s+/g,'')}`);
+        const clean = c.code.replace(/\s+/g,'');
+        const el = document.getElementById(`accordion-${clean}`);
         if (!el) return;
         const match = c.title.toLowerCase().includes(q) || c.code.toLowerCase().includes(q);
         el.style.display = match ? "block" : "none";
       });
     }
 
-    async function handleFileUpload(e, courseCode) {
+    async function handlePartFileUpload(e, courseCode, part) {
       const file = e.target.files[0];
       if (!file) return;
       if (file.type !== "application/pdf") {
-        alert("Please upload a PDF document.");
+        alert("Only PDF files are supported for lecture materials.");
         return;
       }
       try {
-        await saveFileToDB(courseCode, file);
-        await renderMaterialsForCourse(courseCode);
+        await saveFileToDB(courseCode, part, file);
+        await renderPartMaterials(courseCode, part);
       } catch (err) {
         console.error(err);
-        alert("Failed to store file locally.");
+        alert("Failed to store file in IndexedDB.");
       }
     }
 
-    async function renderMaterialsForCourse(courseCode) {
-      const containerId = `materials-${courseCode.replace(/\s+/g,'')}`;
-      const container = document.getElementById(containerId);
+    async function renderPartMaterials(courseCode, part) {
+      const cleanCode = courseCode.replace(/\s+/g,'');
+      const targetId = part === 'Part A' ? `materials-${cleanCode}-PartA` :
+                       part === 'Part B' ? `materials-${cleanCode}-PartB` :
+                       `materials-${cleanCode}-General`;
+      
+      const container = document.getElementById(targetId);
       if (!container) return;
 
-      const files = await getFilesForCourse(courseCode);
+      const files = await getFilesForCoursePart(courseCode, part);
       container.innerHTML = "";
 
       if (files.length === 0) {
-        container.innerHTML = `<p class="text-[11px] text-slate-400 italic">No PDF materials uploaded for this course yet.</p>`;
+        container.innerHTML = `<p class="text-[11px] text-slate-400 italic py-1">No ${part} PDF files uploaded yet.</p>`;
         return;
       }
 
@@ -996,14 +1123,15 @@ html
         row.innerHTML = `
           <div class="flex items-center space-x-2 truncate">
             <i data-lucide="file" class="w-4 h-4 text-red-500 flex-shrink-0"></i>
-            <span class="font-medium text-slate-800 truncate">${f.name}</span>
-            <span class="text-[10px] text-slate-400 flex-shrink-0">(${Math.round(f.size/1024)} KB &bull; ${f.uploadedAt})</span>
+            <span class="font-medium text-slate-800 truncate" title="${f.name}">${f.name}</span>
+            <span class="text-[10px] text-slate-400 flex-shrink-0">(${Math.round(f.size/1024)} KB)</span>
           </div>
-          <div class="flex items-center space-x-2 flex-shrink-0 ml-2">
-            <a href="${f.dataUrl}" download="${f.name}" class="text-blue-600 hover:text-blue-800 p-1">
-              <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            </a>
-            <button onclick="deleteFileFromDB(${f.id}, '${courseCode}')" class="text-slate-400 hover:text-red-500 p-1">
+          <div class="flex items-center space-x-1.5 flex-shrink-0 ml-2">
+            <button onclick="viewPdfOnline('${f.dataUrl}')" title="Open PDF in new tab" class="px-2 py-1 rounded bg-blue-50 text-blue-700 hover:bg-blue-100 font-medium text-[11px] flex items-center space-x-1 transition">
+              <i data-lucide="external-link" class="w-3 h-3"></i>
+              <span>View</span>
+            </button>
+            <button onclick="deleteFileFromDB(${f.id}, '${courseCode}', '${part}')" title="Delete file" class="text-slate-400 hover:text-red-500 p-1">
               <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
             </button>
           </div>
@@ -1013,13 +1141,71 @@ html
       lucide.createIcons();
     }
 
-    function viewSyllabusModal(courseCode) {
-      let found = null;
-      Object.values(CURRICULUM_DATA).forEach(sem => {
-        sem.courses.forEach(c => {
-          if (c.code === courseCode) found = c;
-        });
+    /* ----------------------------------------------------
+       7. REFERENCE BOOKS MANAGER
+       ---------------------------------------------------- */
+    function openRefBookModal(courseCode) {
+      document.getElementById("refBookCourseCode").value = courseCode;
+      document.getElementById("refBookTitleInput").value = "";
+      document.getElementById("refBookLinkInput").value = "";
+      document.getElementById("refBookModal").classList.remove("hidden");
+    }
+
+    function handleSaveRefBook(e) {
+      e.preventDefault();
+      const courseCode = document.getElementById("refBookCourseCode").value;
+      const title = document.getElementById("refBookTitleInput").value;
+      const link = document.getElementById("refBookLinkInput").value;
+
+      if (!customRefBooks[courseCode]) customRefBooks[courseCode] = [];
+      customRefBooks[courseCode].push({ id: Date.now(), title, link });
+      localStorage.setItem("swadhin_ref_books", JSON.stringify(customRefBooks));
+
+      closeModal("refBookModal");
+      renderRefBooksForCourse(courseCode);
+    }
+
+    function deleteRefBook(courseCode, id) {
+      if (customRefBooks[courseCode]) {
+        customRefBooks[courseCode] = customRefBooks[courseCode].filter(b => b.id !== id);
+        localStorage.setItem("swadhin_ref_books", JSON.stringify(customRefBooks));
+        renderRefBooksForCourse(courseCode);
+      }
+    }
+
+    function renderRefBooksForCourse(courseCode) {
+      const cleanCode = courseCode.replace(/\s+/g,'');
+      const container = document.getElementById(`refbooks-${cleanCode}`);
+      if (!container) return;
+
+      const books = customRefBooks[courseCode] || [];
+      container.innerHTML = "";
+
+      if (books.length === 0) {
+        container.innerHTML = `<p class="text-[11px] text-slate-400 italic">No reference textbooks saved yet. Click "+ Add Reference" to store book titles or links.</p>`;
+        return;
+      }
+
+      books.forEach(b => {
+        const item = document.createElement("div");
+        item.className = "flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200 text-xs";
+        item.innerHTML = `
+          <div class="flex items-center space-x-2 truncate">
+            <i data-lucide="book" class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0"></i>
+            <span class="text-slate-800 font-medium truncate">${b.title}</span>
+            ${b.link ? `<a href="${b.link}" target="_blank" class="text-blue-600 hover:underline text-[11px] font-mono ml-2">[Web Link]</a>` : ''}
+          </div>
+          <button onclick="deleteRefBook('${courseCode}', ${b.id})" class="text-slate-400 hover:text-red-500 p-1">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+          </button>
+        `;
+        container.appendChild(item);
       });
+      lucide.createIcons();
+    }
+
+    function viewSyllabusModal(courseCode) {
+      const found = getCourseByCode(courseCode);
       if (!found) return;
 
       document.getElementById("modalCourseCode").textContent = found.code;
@@ -1049,21 +1235,8 @@ html
     }
 
     /* ----------------------------------------------------
-       7. RESULTS & CGPA ANALYTICS ENGINE
+       8. RESULTS & A+ TARGET ANALYTICS (EXACT TARGET FINAL MARKS)
        ---------------------------------------------------- */
-    function getSustGrade(percent) {
-      if (percent >= 80) return { grade: "A+", gp: 4.00 };
-      if (percent >= 75) return { grade: "A",  gp: 3.75 };
-      if (percent >= 70) return { grade: "A-", gp: 3.50 };
-      if (percent >= 65) return { grade: "B+", gp: 3.25 };
-      if (percent >= 60) return { grade: "B",  gp: 3.00 };
-      if (percent >= 55) return { grade: "B-", gp: 2.75 };
-      if (percent >= 50) return { grade: "C+", gp: 2.50 };
-      if (percent >= 45) return { grade: "C",  gp: 2.25 };
-      if (percent >= 40) return { grade: "C-", gp: 2.00 };
-      return { grade: "F", gp: 0.00 };
-    }
-
     function renderMarkEntry(courses) {
       const container = document.getElementById("markEntryContainer");
       container.innerHTML = "";
@@ -1071,47 +1244,84 @@ html
       courses.forEach(c => {
         const isTheory = c.type === "theory";
         const entry = marksData[c.code] || {};
+        const clean = c.code.replace(/\s+/g,'');
         const card = document.createElement("div");
         card.className = "bg-white border border-slate-200 rounded-xl p-4 shadow-sm";
 
         if (isTheory) {
-          // Theory Course Structure (Total 100): Att (10), Assign (10), Mid (20), Final (60)
+          // Continuous Assessment inputs only: Att (10), Assign (10), Mid (20)
+          // NO Semester Final field. Displays required Final mark to achieve A+ (80%).
+          const continuous = (entry.att || 0) + (entry.assign || 0) + (entry.mid || 0);
+          const reqFinal = Math.max(0, 80 - continuous);
+          const isPossible = reqFinal <= 60;
+          const isAlreadyA = continuous >= 80;
+
           card.innerHTML = `
             <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
               <div>
                 <span class="font-mono text-xs font-bold text-slate-700">${c.code}</span>
                 <h4 class="text-sm font-semibold text-slate-900">${c.title}</h4>
               </div>
-              <div class="flex items-center space-x-3 text-right">
+              <div class="flex items-center space-x-2 text-right">
                 <span class="text-xs text-slate-500">${c.credit.toFixed(1)} Cr</span>
-                <span id="score-badge-${c.code.replace(/\s+/g,'')}" class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-slate-100 text-slate-700">
-                  ${entry.percent !== undefined ? `${entry.percent.toFixed(1)}% | ${entry.grade} (${entry.gp.toFixed(2)})` : '--'}
+                <span class="px-2 py-0.5 rounded text-xs font-mono font-bold bg-slate-100 text-slate-700" id="cont-badge-${clean}">
+                  Continuous: ${continuous.toFixed(1)} / 40
                 </span>
               </div>
             </div>
 
-            <!-- Dynamic Input Fields -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-3 text-xs">
+            <!-- Dynamic Input Fields for Continuous Components -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 text-xs">
               <div>
-                <label class="block text-slate-500 font-medium mb-1">Attendance (10)</label>
-                <input type="number" min="0" max="10" step="0.5" value="${entry.att ?? ''}" placeholder="0-10" oninput="updateTheoryMark('${c.code}', ${c.credit})" id="in-att-${c.code.replace(/\s+/g,'')}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                <label class="block text-slate-500 font-medium mb-1">Attendance (Max: 10)</label>
+                <input type="number" min="0" max="10" step="0.5" value="${entry.att ?? ''}" placeholder="0 - 10" oninput="calculateTheoryTarget('${c.code}', ${c.credit})" id="in-att-${clean}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
               </div>
               <div>
-                <label class="block text-slate-500 font-medium mb-1">Assign/Tutorial (10)</label>
-                <input type="number" min="0" max="10" step="0.5" value="${entry.assign ?? ''}" placeholder="0-10" oninput="updateTheoryMark('${c.code}', ${c.credit})" id="in-assign-${c.code.replace(/\s+/g,'')}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                <label class="block text-slate-500 font-medium mb-1">Assignment / Class Assess (Max: 10)</label>
+                <input type="number" min="0" max="10" step="0.5" value="${entry.assign ?? ''}" placeholder="0 - 10" oninput="calculateTheoryTarget('${c.code}', ${c.credit})" id="in-assign-${clean}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
               </div>
               <div>
-                <label class="block text-slate-500 font-medium mb-1">Midterm / TT (20)</label>
-                <input type="number" min="0" max="20" step="0.5" value="${entry.mid ?? ''}" placeholder="0-20" oninput="updateTheoryMark('${c.code}', ${c.credit})" id="in-mid-${c.code.replace(/\s+/g,'')}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                <label class="block text-slate-500 font-medium mb-1">Midterm Exam / TT (Max: 20)</label>
+                <input type="number" min="0" max="20" step="0.5" value="${entry.mid ?? ''}" placeholder="0 - 20" oninput="calculateTheoryTarget('${c.code}', ${c.credit})" id="in-mid-${clean}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
               </div>
+            </div>
+
+            <!-- Dynamic Required Final Mark Callout for A+ -->
+            <div id="target-box-${clean}" class="mt-3 p-3 rounded-lg border flex items-center justify-between text-xs ${
+              isAlreadyA ? 'bg-emerald-50 border-emerald-200 text-emerald-800' :
+              !isPossible ? 'bg-red-50 border-red-200 text-red-800' :
+              'bg-blue-50 border-blue-200 text-blue-900'
+            }">
               <div>
-                <label class="block text-slate-500 font-medium mb-1">Semester Final (60)</label>
-                <input type="number" min="0" max="60" step="0.5" value="${entry.final ?? ''}" placeholder="0-60" oninput="updateTheoryMark('${c.code}', ${c.credit})" id="in-final-${c.code.replace(/\s+/g,'')}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                <span class="font-semibold uppercase tracking-wider text-[10px]">Target for A+ Grade (80%+ Overall)</span>
+                <div class="font-medium text-xs mt-0.5">
+                  ${
+                    isAlreadyA ? 'Already achieved 80% mark requirement!' :
+                    !isPossible ? `A+ not achievable (Needs ${reqFinal.toFixed(1)}/60; Max score possible: ${(continuous + 60).toFixed(1)})` :
+                    `Minimum Final Exam Mark Required: <b class="text-sm font-mono">${reqFinal.toFixed(1)}</b> / 60 (${((reqFinal / 60) * 100).toFixed(1)}%)`
+                  }
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="px-2 py-1 rounded font-bold text-[10px] ${
+                  isAlreadyA ? 'bg-emerald-200 text-emerald-900' :
+                  !isPossible ? 'bg-red-200 text-red-900' :
+                  reqFinal <= 45 ? 'bg-blue-200 text-blue-900' : 'bg-amber-200 text-amber-900'
+                }">
+                  ${isAlreadyA ? 'A+ Secured' : !isPossible ? 'Unattainable' : reqFinal <= 45 ? 'High Probability' : 'Challenging'}
+                </span>
               </div>
             </div>
           `;
         } else {
-          // Sessional / Lab Course: Attendance (10) + Customizable Report Marks + Customizable Quiz Marks
+          // Sessional Course (Attendance 10, Lab Report, Lab Quiz)
+          const att = entry.att || 0;
+          const rep = entry.rep || 0;
+          const maxRep = entry.maxRep || 50;
+          const quiz = entry.quiz || 0;
+          const maxQuiz = entry.maxQuiz || 40;
+          const scaledSessional = 10 * Math.min(att / 10, 1) + 90 * Math.min((rep + quiz) / (maxRep + maxQuiz), 1);
+
           card.innerHTML = `
             <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
               <div>
@@ -1121,35 +1331,34 @@ html
                 </div>
                 <h4 class="text-sm font-semibold text-slate-900 mt-0.5">${c.title}</h4>
               </div>
-              <div class="flex items-center space-x-3 text-right">
+              <div class="flex items-center space-x-2 text-right">
                 <span class="text-xs text-slate-500">${c.credit.toFixed(1)} Cr</span>
-                <span id="score-badge-${c.code.replace(/\s+/g,'')}" class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-slate-100 text-slate-700">
-                  ${entry.percent !== undefined ? `${entry.percent.toFixed(1)}% | ${entry.grade} (${entry.gp.toFixed(2)})` : '--'}
+                <span class="px-2 py-0.5 rounded text-xs font-mono font-bold bg-slate-100 text-slate-700" id="cont-badge-${clean}">
+                  Score: ${scaledSessional.toFixed(1)}% (${scaledSessional >= 80 ? 'A+' : scaledSessional >= 75 ? 'A' : 'In Progress'})
                 </span>
               </div>
             </div>
 
-            <!-- Sessional Inputs with Customizable Max Marks -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 text-xs">
               <div>
                 <label class="block text-slate-500 font-medium mb-1">Attendance (Max: 10)</label>
-                <input type="number" min="0" max="10" step="0.5" value="${entry.att ?? ''}" placeholder="0-10" oninput="updateSessionalMark('${c.code}', ${c.credit})" id="in-att-${c.code.replace(/\s+/g,'')}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                <input type="number" min="0" max="10" step="0.5" value="${entry.att ?? ''}" placeholder="0 - 10" oninput="calculateSessionalScore('${c.code}', ${c.credit})" id="in-att-${clean}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
               </div>
               
               <div>
                 <div class="flex justify-between items-center mb-1">
                   <label class="text-slate-500 font-medium">Lab Report</label>
-                  <span class="text-[10px] text-slate-400">Max: <input type="number" min="1" id="max-rep-${c.code.replace(/\s+/g,'')}" value="${entry.maxRep || 50}" oninput="updateSessionalMark('${c.code}', ${c.credit})" class="w-10 border border-slate-300 rounded px-1 py-0.5 text-center font-mono"></span>
+                  <span class="text-[10px] text-slate-400">Max: <input type="number" min="1" id="max-rep-${clean}" value="${entry.maxRep || 50}" oninput="calculateSessionalScore('${c.code}', ${c.credit})" class="w-10 border border-slate-300 rounded px-1 py-0.5 text-center font-mono"></span>
                 </div>
-                <input type="number" min="0" step="0.5" value="${entry.rep ?? ''}" placeholder="Obtained marks" oninput="updateSessionalMark('${c.code}', ${c.credit})" id="in-rep-${c.code.replace(/\s+/g,'')}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                <input type="number" min="0" step="0.5" value="${entry.rep ?? ''}" placeholder="Marks" oninput="calculateSessionalScore('${c.code}', ${c.credit})" id="in-rep-${clean}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
               </div>
 
               <div>
                 <div class="flex justify-between items-center mb-1">
                   <label class="text-slate-500 font-medium">Lab Quiz / Viva</label>
-                  <span class="text-[10px] text-slate-400">Max: <input type="number" min="1" id="max-quiz-${c.code.replace(/\s+/g,'')}" value="${entry.maxQuiz || 40}" oninput="updateSessionalMark('${c.code}', ${c.credit})" class="w-10 border border-slate-300 rounded px-1 py-0.5 text-center font-mono"></span>
+                  <span class="text-[10px] text-slate-400">Max: <input type="number" min="1" id="max-quiz-${clean}" value="${entry.maxQuiz || 40}" oninput="calculateSessionalScore('${c.code}', ${c.credit})" class="w-10 border border-slate-300 rounded px-1 py-0.5 text-center font-mono"></span>
                 </div>
-                <input type="number" min="0" step="0.5" value="${entry.quiz ?? ''}" placeholder="Obtained marks" oninput="updateSessionalMark('${c.code}', ${c.credit})" id="in-quiz-${c.code.replace(/\s+/g,'')}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                <input type="number" min="0" step="0.5" value="${entry.quiz ?? ''}" placeholder="Marks" oninput="calculateSessionalScore('${c.code}', ${c.credit})" id="in-quiz-${clean}" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-600 focus:outline-none">
               </div>
             </div>
           `;
@@ -1159,30 +1368,66 @@ html
       });
     }
 
-    function updateTheoryMark(code, credit) {
+    function calculateTheoryTarget(code, credit) {
       const clean = code.replace(/\s+/g,'');
       const att = parseFloat(document.getElementById(`in-att-${clean}`).value) || 0;
       const assign = parseFloat(document.getElementById(`in-assign-${clean}`).value) || 0;
       const mid = parseFloat(document.getElementById(`in-mid-${clean}`).value) || 0;
-      const final = parseFloat(document.getElementById(`in-final-${clean}`).value) || 0;
 
-      const total = att + assign + mid + final;
-      const sust = getSustGrade(total);
+      const continuous = att + assign + mid;
+      const reqFinal = Math.max(0, 80 - continuous);
+      const isPossible = reqFinal <= 60;
+      const isAlreadyA = continuous >= 80;
 
       marksData[code] = {
         type: "theory",
-        att, assign, mid, final,
-        total,
-        percent: total,
-        grade: sust.grade,
-        gp: sust.gp,
-        credit: credit
+        att, assign, mid,
+        continuous,
+        reqFinal,
+        credit
       };
 
-      saveAndRefreshMarks(clean, code, total, sust);
+      localStorage.setItem("swadhin_marks", JSON.stringify(marksData));
+
+      // Update badge & target box dynamically
+      const badge = document.getElementById(`cont-badge-${clean}`);
+      if (badge) badge.textContent = `Continuous: ${continuous.toFixed(1)} / 40`;
+
+      const targetBox = document.getElementById(`target-box-${clean}`);
+      if (targetBox) {
+        targetBox.className = `mt-3 p-3 rounded-lg border flex items-center justify-between text-xs ${
+          isAlreadyA ? 'bg-emerald-50 border-emerald-200 text-emerald-800' :
+          !isPossible ? 'bg-red-50 border-red-200 text-red-800' :
+          'bg-blue-50 border-blue-200 text-blue-900'
+        }`;
+        targetBox.innerHTML = `
+          <div>
+            <span class="font-semibold uppercase tracking-wider text-[10px]">Target for A+ Grade (80%+ Overall)</span>
+            <div class="font-medium text-xs mt-0.5">
+              ${
+                isAlreadyA ? 'Already achieved 80% mark requirement!' :
+                !isPossible ? `A+ not achievable (Needs ${reqFinal.toFixed(1)}/60; Max score possible: ${(continuous + 60).toFixed(1)})` :
+                `Minimum Final Exam Mark Required: <b class="text-sm font-mono">${reqFinal.toFixed(1)}</b> / 60 (${((reqFinal / 60) * 100).toFixed(1)}%)`
+              }
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="px-2 py-1 rounded font-bold text-[10px] ${
+              isAlreadyA ? 'bg-emerald-200 text-emerald-900' :
+              !isPossible ? 'bg-red-200 text-red-900' :
+              reqFinal <= 45 ? 'bg-blue-200 text-blue-900' : 'bg-amber-200 text-amber-900'
+            }">
+              ${isAlreadyA ? 'A+ Secured' : !isPossible ? 'Unattainable' : reqFinal <= 45 ? 'High Probability' : 'Challenging'}
+            </span>
+          </div>
+        `;
+      }
+
+      calculateContinuousOverview();
+      renderGradeChart();
     }
 
-    function updateSessionalMark(code, credit) {
+    function calculateSessionalScore(code, credit) {
       const clean = code.replace(/\s+/g,'');
       const att = parseFloat(document.getElementById(`in-att-${clean}`).value) || 0;
       const rep = parseFloat(document.getElementById(`in-rep-${clean}`).value) || 0;
@@ -1190,77 +1435,49 @@ html
       const quiz = parseFloat(document.getElementById(`in-quiz-${clean}`).value) || 0;
       const maxQuiz = parseFloat(document.getElementById(`max-quiz-${clean}`).value) || 40;
 
-      // Normalization: Attendance (10%) + 90% scaled from (Report + Quiz)
-      const reportQuizSumMax = (maxRep + maxQuiz) || 1;
-      const reportQuizSumObt = (rep + quiz);
-      const scaledSessional = 10 * Math.min(att / 10, 1) + 90 * Math.min(reportQuizSumObt / reportQuizSumMax, 1);
-      const sust = getSustGrade(scaledSessional);
+      const scaledSessional = 10 * Math.min(att / 10, 1) + 90 * Math.min((rep + quiz) / (maxRep + maxQuiz), 1);
 
       marksData[code] = {
         type: "sessional",
         att, rep, maxRep, quiz, maxQuiz,
-        total: scaledSessional,
-        percent: scaledSessional,
-        grade: sust.grade,
-        gp: sust.gp,
-        credit: credit
+        continuous: (scaledSessional * 0.4), // normalized
+        scaledScore: scaledSessional,
+        credit
       };
 
-      saveAndRefreshMarks(clean, code, scaledSessional, sust);
-    }
-
-    function saveAndRefreshMarks(cleanCode, code, total, sust) {
       localStorage.setItem("swadhin_marks", JSON.stringify(marksData));
-      
-      const badge = document.getElementById(`score-badge-${cleanCode}`);
+
+      const badge = document.getElementById(`cont-badge-${clean}`);
       if (badge) {
-        badge.textContent = `${total.toFixed(1)}% | ${sust.grade} (${sust.gp.toFixed(2)})`;
-        badge.className = `px-2.5 py-1 rounded-md text-xs font-mono font-bold ${sust.grade === 'F' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-900'}`;
+        badge.textContent = `Score: ${scaledSessional.toFixed(1)}% (${scaledSessional >= 80 ? 'A+' : scaledSessional >= 75 ? 'A' : 'In Progress'})`;
       }
 
-      // Update dashboard course badge if visible
-      const dashBadge = document.getElementById(`badge-${cleanCode}`);
-      if (dashBadge) {
-        dashBadge.innerHTML = `Grade: <b>${sust.grade}</b>`;
-      }
-
-      calculateOverallCGPA();
+      calculateContinuousOverview();
       renderGradeChart();
     }
 
-    function calculateOverallCGPA() {
+    function calculateContinuousOverview() {
       const courses = CURRICULUM_DATA[currentSemester].courses;
-      let totalCreditWeighted = 0;
+      let totalContinuous = 0;
+      let theoryCourseCount = 0;
       let totalRegisteredCredits = 0;
 
       courses.forEach(c => {
+        totalRegisteredCredits += c.credit;
         const entry = marksData[c.code];
-        if (entry && entry.gp !== undefined) {
-          totalCreditWeighted += entry.gp * c.credit;
-          totalRegisteredCredits += c.credit;
+        if (entry && entry.type === 'theory' && entry.continuous !== undefined) {
+          totalContinuous += entry.continuous;
+          theoryCourseCount++;
         }
       });
 
-      const projectedSGPA = totalRegisteredCredits > 0 ? (totalCreditWeighted / totalRegisteredCredits) : 0;
-      const sgpaElem = document.getElementById("projectedGpa");
-      const creditsElem = document.getElementById("calcTotalCredits");
-      const letterElem = document.getElementById("projectedLetter");
-      const statusNote = document.getElementById("gpaStatusNote");
-
-      sgpaElem.textContent = projectedSGPA.toFixed(2);
-      creditsElem.textContent = `${totalRegisteredCredits.toFixed(1)} / ${CURRICULUM_DATA[currentSemester].credits.toFixed(1)}`;
-
-      if (totalRegisteredCredits === 0) {
-        letterElem.textContent = "--";
-        statusNote.textContent = "Enter course marks below";
-      } else {
-        letterElem.textContent = getSustGrade(projectedSGPA * 25).grade; // Approx equivalence
-        statusNote.textContent = `${totalRegisteredCredits.toFixed(1)} credits evaluated`;
-      }
+      const avgCont = theoryCourseCount > 0 ? (totalContinuous / theoryCourseCount) : 0;
+      document.getElementById("projectedContinuousAvg").textContent = theoryCourseCount > 0 ? `${avgCont.toFixed(1)} / 40` : '--';
+      document.getElementById("calcTotalCredits").textContent = `${totalRegisteredCredits.toFixed(1)}`;
     }
 
     function resetAllMarks() {
-      if (confirm("Reset all entered marks for all semesters?")) {
+      if (confirm("Reset all entered marks?")) {
         marksData = {};
         localStorage.removeItem("swadhin_marks");
         refreshAllViews();
@@ -1272,61 +1489,57 @@ html
       const canvas = document.getElementById("gradeChart");
       if (!canvas) return;
 
-      const currentCodes = CURRICULUM_DATA[currentSemester].courses.map(c => c.code);
-      const gradeCounts = { "A+": 0, "A": 0, "A-": 0, "B+": 0, "B": 0, "B-": 0, "C+": 0, "C": 0, "C-": 0, "F": 0 };
+      const courses = CURRICULUM_DATA[currentSemester].courses.filter(c => c.type === 'theory');
+      let achievable = 0;
+      let challenging = 0;
+      let unattainable = 0;
 
-      currentCodes.forEach(code => {
-        if (marksData[code]?.grade) {
-          gradeCounts[marksData[code].grade] = (gradeCounts[marksData[code].grade] || 0) + 1;
+      courses.forEach(c => {
+        const entry = marksData[c.code];
+        if (entry && entry.continuous !== undefined) {
+          const req = 80 - entry.continuous;
+          if (req > 60) unattainable++;
+          else if (req > 45) challenging++;
+          else achievable++;
+        } else {
+          achievable++; // default assumption
         }
       });
-
-      const labels = Object.keys(gradeCounts);
-      const values = Object.values(gradeCounts);
-      const hasData = values.some(v => v > 0);
 
       if (gradeChartInstance) {
         gradeChartInstance.destroy();
       }
 
       gradeChartInstance = new Chart(canvas, {
-        type: 'bar',
+        type: 'doughnut',
         data: {
-          labels: labels,
+          labels: ['High Probability (<=45)', 'Challenging (46-60)', 'Unattainable (>60)'],
           datasets: [{
-            label: 'Courses',
-            data: hasData ? values : [0,0,0,0,0,0,0,0,0,0],
-            backgroundColor: [
-              '#2563eb', '#3b82f6', '#60a5fa', '#34d399', '#10b981', '#059669', '#f59e0b', '#f97316', '#fb923c', '#ef4444'
-            ],
-            borderRadius: 4
+            data: [achievable, challenging, unattainable],
+            backgroundColor: ['#2563eb', '#f59e0b', '#ef4444'],
+            borderWidth: 0
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
-            legend: { display: false }
+            legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
           },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: { stepSize: 1, precision: 0 }
-            }
-          }
+          cutout: '70%'
         }
       });
     }
 
     /* ----------------------------------------------------
-       8. EXAM ROUTINE MODULE
+       9. EXAM ROUTINE MODULE (SHOWS COURSE CODE & FULL TITLE)
        ---------------------------------------------------- */
     function renderExamRoutine() {
       const table = document.getElementById("examScheduleTable");
       table.innerHTML = "";
 
-      const currentCourses = CURRICULUM_DATA[currentSemester].courses.map(c => c.code);
-      const filtered = examRoutines.filter(e => currentCourses.includes(e.courseCode));
+      const currentCodes = CURRICULUM_DATA[currentSemester].courses.map(c => c.code);
+      const filtered = examRoutines.filter(e => currentCodes.includes(e.courseCode));
 
       if (filtered.length === 0) {
         table.innerHTML = `
@@ -1340,7 +1553,6 @@ html
         return;
       }
 
-      // Sort by date ascending
       filtered.sort((a,b) => new Date(a.date) - new Date(b.date));
 
       filtered.forEach(ex => {
@@ -1351,20 +1563,26 @@ html
         else if (daysLeft <= 10) badgeColor = "bg-amber-50 text-amber-700 border border-amber-200";
 
         const countdownText = daysLeft < 0 ? "Completed" : daysLeft === 0 ? "Today" : `${daysLeft} days left`;
+        const courseObj = getCourseByCode(ex.courseCode);
+        const courseTitle = courseObj ? courseObj.title : "Course Title";
 
         const row = document.createElement("tr");
         row.className = "hover:bg-slate-50/70 transition";
         row.innerHTML = `
-          <td class="py-3 px-4 font-medium text-slate-800">${ex.type}</td>
-          <td class="py-3 px-4">
-            <span class="font-mono text-xs font-bold bg-slate-100 px-1.5 py-0.5 rounded mr-1">${ex.courseCode}</span>
+          <td class="py-3.5 px-4 font-medium text-slate-800">${ex.type}</td>
+          
+          <!-- Explicitly includes Course Code AND full Course Title -->
+          <td class="py-3.5 px-4">
+            <span class="font-mono text-xs font-bold bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded border border-slate-200 mr-1.5">${ex.courseCode}</span>
+            <div class="font-semibold text-slate-900 text-xs mt-1">${courseTitle}</div>
           </td>
-          <td class="py-3 px-4 text-slate-600">${ex.date} at ${ex.time}</td>
-          <td class="py-3 px-4 text-slate-600">${ex.room || 'TBD'}</td>
-          <td class="py-3 px-4">
-            <span class="px-2 py-0.5 rounded-full text-[11px] ${badgeColor}">${countdownText}</span>
+
+          <td class="py-3.5 px-4 text-slate-600">${ex.date} at ${ex.time}</td>
+          <td class="py-3.5 px-4 text-slate-600">${ex.room || 'TBD'}</td>
+          <td class="py-3.5 px-4">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] ${badgeColor}">${countdownText}</span>
           </td>
-          <td class="py-3 px-4 text-right">
+          <td class="py-3.5 px-4 text-right">
             <button onclick="deleteExam(${ex.id})" class="text-slate-400 hover:text-red-500 p-1">
               <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
             </button>
